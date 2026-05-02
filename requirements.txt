@@ -1,0 +1,8 @@
+streamlit
+streamlit-authenticator
+pyyaml
+pandas
+numpy
+requests
+matplotlib
+fpdf
