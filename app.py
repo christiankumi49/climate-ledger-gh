@@ -1,6 +1,5 @@
 import streamlit as st
 import streamlit_authenticator as stauth
-import yaml
 import pandas as pd
 import numpy as np
 import requests
@@ -12,7 +11,6 @@ import random
 from datetime import datetime
 from email.mime.text import MIMEText
 from fpdf import FPDF
-from yaml.loader import SafeLoader
 
 # --- 1. CORE ARCHITECTURE & PERSISTENCE ---
 def init_db():
@@ -60,21 +58,19 @@ def classify_risk(p50):
     elif p50 > 0.1: return "MODERATE 🟡"
     return "LOW 🟢"
 
-# --- 3. AUTHENTICATION HANDLER ---
+# --- 3. AUTHENTICATION HANDLER (FIXED FOR CLOUD) ---
 def load_auth():
+    # We use st.secrets directly to bypass the need for config.yaml
     try:
-        with open('config.yaml') as file:
-            config = yaml.load(file, Loader=SafeLoader)
-        
         authenticator = stauth.Authenticate(
-            config['credentials'],
-            config['cookie']['name'],
-            config['cookie']['key'],
-            config['cookie']['expiry_days']
+            st.secrets['credentials'],
+            st.secrets['cookie']['name'],
+            st.secrets['cookie']['key'],
+            st.secrets['cookie']['expiry_days']
         )
-        return authenticator, config
-    except FileNotFoundError:
-        st.error("Missing config.yaml! Please ensure the file is named correctly.")
+        return authenticator
+    except Exception as e:
+        st.error("Secrets Configuration Error: Please check your Advanced Settings in Streamlit Cloud.")
         st.stop()
 
 # --- 4. ACTION LOOP: SECURE ALERT PROTOCOL ---
@@ -102,7 +98,7 @@ def execute_alert_protocol(recipient, region, loss_ghs):
     except Exception as e:
         return False, f"❌ Protocol Blocked (SMTP): {str(e)[:30]}"
 
-# --- 5. BRANDED REPORTING (DEPLOYMENT EDITION - FIXED) ---
+# --- 5. BRANDED REPORTING ---
 class EnterpriseReport(FPDF):
     def header(self):
         self.set_font('Arial', 'B', 15)
@@ -118,11 +114,9 @@ class EnterpriseReport(FPDF):
         self.set_y(-15)
         self.set_font('Arial', 'I', 8)
         self.set_text_color(128, 128, 128) 
-        # Replaced en-dash with standard hyphen to fix 'latin-1' error
         self.cell(0, 10, 'Confidential - Internal Use Only | Enterprise Climate Ledger v10.0', 0, 0, 'C')
 
 def create_pdf(client, region, risk, exposure, rec, t, r):
-    # Clean emojis to prevent encoding errors
     clean_risk = re.sub(r'[^\x00-\x7F]+', '', risk).strip()
     
     pdf = EnterpriseReport()
@@ -170,7 +164,7 @@ def main():
     st.set_page_config(page_title="Enterprise Climate Ledger", layout="wide")
     init_db()
     
-    authenticator, config = load_auth()
+    authenticator = load_auth()
     authenticator.login(location='main')
 
     if st.session_state["authentication_status"]:
