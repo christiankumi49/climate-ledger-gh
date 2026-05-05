@@ -11,6 +11,31 @@ Institutional Audit Ledger: A persistent SQL-based tracking system that logs all
 Real-Time Alerts: Dispatches automated risk triggers via a secure background SMTP protocol to multiple stakeholders.
 
 Professional Reporting: Generates structured, confidential PDF audit reports for decision-support and mitigation planning.
+## 📸 System Preview
+
+### 🔐 Secure Authentication
+Built with enterprise-grade authentication to protect sensitive institutional climate data and regional risk reports.
+<p align="left">
+  <img src="assets/auth-interface.png" width="600" alt="Login Page"/>
+</p>
+
+### 📊 Risk Analytics & Financial Exposure
+Advanced modeling of P95 tail risk and asset exposure using real-time meteorological inputs for the Ghanaian agribusiness sector.
+<p align="left">
+  <img src="assets/risk-analytics-dashboard.png" width="800" alt="Risk Dashboard"/>
+</p>
+
+### ⚙️ Precision Valuation Controls
+Granular control over asset parameters including total hectares, expected yield, and market valuation per tonne.
+<p align="left">
+  <img src="assets/valuation-controls.png" width="350" alt="Sidebar Controls"/>
+</p>
+
+### 📜 Institutional Audit Ledger
+A synchronized record of all transmitted alerts and financial risk audits, ensuring transparency and accountability.
+<p align="left">
+  <img src="assets/climate-data-ledger.png" width="800" alt="Audit Ledger"/>
+</p>
 
 🧠 The Intelligence Engine
 Data Ingestion: Fetches live localized weather parameters (maximum temperature and cumulative precipitation) via the Open-Meteo API.
