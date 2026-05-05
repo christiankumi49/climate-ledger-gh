@@ -1,6 +1,6 @@
 🌍 Climate Risk Intelligence System
-An enterprise-grade platform designed to bridge the gap between Meteorology and Financial Risk Management. This tool converts real-time atmospheric data into actionable financial insights for large-scale agribusiness and institutional stakeholders.
-
+An enterprise-grade platform that converts real-time weather data into financial risk insights for agribusiness and institutional decision-makers.
+Helps organizations anticipate climate-driven losses and make faster, data-backed financial decisions.
 🚀 Key Capabilities
 Predictive Analytics: Estimates agricultural yield loss by modeling regional responses to temperature and rainfall fluctuations.
 
@@ -37,7 +37,7 @@ A synchronized record of all transmitted alerts and financial risk audits, ensur
   <img src="assets/climate-data-ledger.png" width="800" alt="Audit Ledger"/>
 </p>
 
-🧠 The Intelligence Engine
+🧠 How It Works
 Data Ingestion: Fetches live localized weather parameters (maximum temperature and cumulative precipitation) via the Open-Meteo API.
 
 Regional Logic: Applies regression-based coefficients tailored to specific Ghanaian agro-ecological zones (e.g., Northern, Ashanti, and Greater Accra).
