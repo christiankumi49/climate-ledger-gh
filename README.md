@@ -50,7 +50,7 @@ BSc Meteorology & Climate Science — Kwame Nkrumah University of Science and Te
 Building solutions at the intersection of Atmospheric Dynamics, Data Science, and Agro-Finance.
 
 🌐 Live Application
-👉 [https://climate-ledger-gh-ech7ntc6dznzutu5qrwq2u.streamlit.app/]
+👉 [https://agri-climate-ledger.streamlit.app/]
 
 ⚠️ Disclaimer
 This system is a decision-support tool based on statistical regression models and available meteorological data. It is intended for analytical purposes and does not guarantee exact biological or financial outcomes.
